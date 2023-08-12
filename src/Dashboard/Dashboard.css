@@ -1,0 +1,16 @@
+.dashboard-display{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-around;
+    padding-top:2em;
+}
+
+.info-card{
+     /* width:10%; */
+    height:.5vh;
+    margin:30px;
+    border-radius:15px;
+    background-color: bisque;
+    box-shadow: 10px 10px 5px black, 5px 5px 2px gray;
+    padding:10em;
+}

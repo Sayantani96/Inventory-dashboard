@@ -1,0 +1,16 @@
+ul li{
+    list-style-type: none;
+    cursor:pointer;
+}
+
+.side-nav{
+    background-color:black;
+    width: 407px;
+    height:200vh;
+    color:azure;
+    padding-top:15em;
+}
+
+.display-ui{
+    display:flex;
+}
