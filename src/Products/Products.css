@@ -1,0 +1,23 @@
+.product-display{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-around;
+    padding-top:2em;
+}
+
+th,td{
+    padding:15px;
+}
+
+table, th, td {
+    border-width: 2px;
+    border-style: solid;
+    border-color: black;
+  }
+  .products-section{
+    padding:20px;
+  }
+  .prod-img{
+    width:150px;
+    height:150px;
+  }
