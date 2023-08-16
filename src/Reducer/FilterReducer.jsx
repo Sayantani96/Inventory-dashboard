@@ -15,6 +15,19 @@ export const filterReducer=(state,action)=>{
             ...state,
             inventory:action.payload.inventory
         }
+
+        case 'STOCK_FILTER':
+            if(!action.payload.stockBool){
+                const lowStockProd=action.payload.inventory.filter(prod=>prod.stock<=10)
+            return{
+                ...state,
+                inventory:lowStockProd,
+            }
+            }
             
+           return{
+            ...state,
+            inventory:action.payload.inventory
+           } 
     }
 }

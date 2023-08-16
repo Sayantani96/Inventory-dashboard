@@ -9,7 +9,7 @@ const Products = () => {
   
 
   const handleDeptChange = (e) => {
-    console.log(e.target.value)
+
       if(e.target.value=="All Departments"){
         dispatch({
           type:'DEPT_FILTER',
@@ -32,6 +32,28 @@ const Products = () => {
   };
   const [isChecked, setIsChecked] = useState(false);
 
+  const handleStockFilter=(e)=>{
+    setIsChecked(e.target.checked);
+    if(isChecked){
+      dispatch({
+        type:'STOCK_FILTER',
+        payload:{
+          inventory:inventoryData,
+          stockBool:true
+        }
+      })
+    }
+    else{
+      dispatch({
+        type:'STOCK_FILTER',
+        payload:{
+          inventory:inventoryData,
+          stockBool:false
+        }
+      })
+    }
+  }
+
   return (
     <div className="products-section">
     <div className="prod-header-section">
@@ -53,7 +75,7 @@ const Products = () => {
       <input
         type="checkbox"
         checked={isChecked}
-        onChange={(e) => setIsChecked(e.target.checked)}
+        onChange={(e) =>handleStockFilter(e)}
       />
       <label htmlFor="lowStockCheckbox">Low Stock</label>
       <select>
