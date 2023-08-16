@@ -4,12 +4,14 @@ import Dashboard from "./Dashboard/Dashboard";
 import Departments from "./Departments/Departments";
 import Products from "./Products/Products";
 import Description from "./Description/Description";
+import FilterProvider from "./Context/FilterContext";
 
 function App() {
 
 
   return (
     <>
+    <FilterProvider>
      <Router>
     <Routes>
       <Route path="/" element={<Home/>}>
@@ -20,6 +22,7 @@ function App() {
       </Route>
       </Routes>
      </Router>
+     </FilterProvider>
     </>
   )
 }

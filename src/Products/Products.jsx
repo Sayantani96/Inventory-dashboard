@@ -1,27 +1,42 @@
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
 import './Products.css'
-import {inventoryData} from '../Data/InventoryData'
 import { NavLink } from 'react-router-dom';
+import { FilterContext } from '../Context/FilterContext';
+import { inventoryData } from '../Data/InventoryData';
 const Products = () => {
 
-  const handleChange = (e) => {
+  const {state:{inventory},dispatch}=useContext(FilterContext)
+  
 
-    const [categories, setCategories] = useState([]);
-    setCategories([e.target.value]);
+  const handleDeptChange = (e) => {
+    console.log(e.target.value)
+      if(e.target.value=="All Departments"){
+        dispatch({
+          type:'DEPT_FILTER',
+          payload:{
+            inventory:inventoryData,
+            dept:e.target.value
+          }
+        })
+      }
+      else{
+        console.log("Entered here")
+        dispatch({
+          type:'DEPT_FILTER',
+          payload:{
+            inventory:inventoryData,
+            dept:e.target.value
+          }
+        })
+      }
   };
   const [isChecked, setIsChecked] = useState(false);
-
-  // useEffect(() => {
-  //   const stockQuantity = product.stockQuantity;
-  //   setIsChecked(stockQuantity <= 10);
-  // }, [inventoryData]);
-
 
   return (
     <div className="products-section">
     <div className="prod-header-section">
     <h2>Products</h2>
-    <select onChange={handleChange}>
+    <select onChange={handleDeptChange}>
     <option value="All Departments" selected >
             All Department
           </option>
@@ -31,7 +46,7 @@ const Products = () => {
           <option value="Toys" >
             Toys
           </option>
-          <option value="Clothes" >
+          <option value="Clothing" >
             Clothes
           </option>
       </select>
@@ -41,7 +56,7 @@ const Products = () => {
         onChange={(e) => setIsChecked(e.target.checked)}
       />
       <label htmlFor="lowStockCheckbox">Low Stock</label>
-      <select onChange={handleChange}>
+      <select>
     <option value="Name" selected >
             Name
           </option>
@@ -69,7 +84,7 @@ const Products = () => {
         <tbody>
        
         {
-          inventoryData.map(prod=>
+          inventory.map(prod=>
           <tr >
             <td>
               <img src={prod.imageUrl} alt="prod-image" className="prod-img"/>
