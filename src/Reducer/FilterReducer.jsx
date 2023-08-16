@@ -29,5 +29,16 @@ export const filterReducer=(state,action)=>{
             ...state,
             inventory:action.payload.inventory
            } 
+           case 'SORT_FILTER':
+            const sortCriteria=action.payload.sort.toLowerCase();
+            console.log(sortCriteria)
+            const sortFilterarr=action.payload.inventory.sort((a,b)=>
+            (a[sortCriteria]>b[sortCriteria])?1:(a[sortCriteria]<b[sortCriteria])?-1:0)
+            console.log(sortFilterarr)
+            return{
+                ...state,
+                inventory:sortFilterarr
+            }
+
     }
 }

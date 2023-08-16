@@ -1,13 +1,13 @@
 import React, {useContext, useState} from 'react'
 import './Products.css'
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { FilterContext } from '../Context/FilterContext';
 import { inventoryData } from '../Data/InventoryData';
 const Products = () => {
 
   const {state:{inventory},dispatch}=useContext(FilterContext)
   
-
+  const navigate=useNavigate();
   const handleDeptChange = (e) => {
 
       if(e.target.value=="All Departments"){
@@ -53,6 +53,19 @@ const Products = () => {
       })
     }
   }
+  const handleSortChanges=(e)=>{
+    dispatch({
+      type: 'SORT_FILTER',
+      payload:{
+        inventory:inventoryData,
+        sort:e.target.value
+      }
+    })
+  }
+
+  const addNewProduct=()=>{
+    navigate('/add-product')
+  }
 
   return (
     <div className="products-section">
@@ -78,7 +91,7 @@ const Products = () => {
         onChange={(e) =>handleStockFilter(e)}
       />
       <label htmlFor="lowStockCheckbox">Low Stock</label>
-      <select>
+      <select onChange={handleSortChanges}>
     <option value="Name" selected >
             Name
           </option>
@@ -89,7 +102,7 @@ const Products = () => {
             Stock
           </option>
       </select>
-      <button>New</button>
+      <button onClick={addNewProduct}>New</button>
     </div>
       
       <table>

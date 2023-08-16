@@ -5,6 +5,7 @@ import Departments from "./Departments/Departments";
 import Products from "./Products/Products";
 import Description from "./Description/Description";
 import FilterProvider from "./Context/FilterContext";
+import AddProductForm from "./AddProductForm/AddProductForm";
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         <Route path="/departments" element={<Departments/>}/>
         <Route path="/products" element={<Products/>}/>
         <Route path="/products/:id" element={<Description/>}/>
+        <Route path="/add-product" element={<AddProductForm/>}/>
       </Route>
       </Routes>
      </Router>
